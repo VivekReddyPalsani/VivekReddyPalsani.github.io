@@ -18,7 +18,8 @@ const showRegister = () => {
     <p><input type="text" id="txtName"></p>
     <p><input type="text" id="txtEmail"></p>
     <p><input type="password" id="txtPass"></p>
-    <button>Register</button>
+    <p><button>Register</button></p>
+    <p><button onclick = 'showLogin()'>Login to Existing Account</button></p>
     </div>
     `
     root.innerHTML = str
