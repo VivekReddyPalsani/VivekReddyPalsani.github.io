@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Submit() {
+            let a = name.value;
+            let b = email.value;
+            let c = pass.value;
+
+            details.innerHTML = `Your Details :-`
+            n.innerHTML = `Name :-  ${a}`
+            e.innerHTML = `Email :- ${b}`
+            p.innerHTML = `Password :- ${c}`
+        }
+    </script>
+</head>
+<body>
+    <h1>Assignment 4</h1>
+    <input type="text" id="name">
+    <input type="text" id="email">
+    <input type="text" id="pass">
+    <button onclick="Submit()" style="background-color: rgb(255, 242, 0);">Submit</button>
+    <div id="details"></div>
+    <div id="n"></div>
+    <div id="e"></div>
+    <div id="p"></div>
+</body>
+</html>
