@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruit List</title>
     <script>
-        const fruits = [];
-        function add() {
-            var a = inp.value;
-            const p = document.createElement("p");
-            p.textContent = a;
-            document.getElementById("fruitlist").appendChild(p);
-        }
+      const fruits = [];
+      function add() {
+        const input = document.getElementById("txt1").value;
+        fruits.push(input);
+        const listHTML = fruits.map((fruit) => `<li>${fruit}</li>`).join("");
+        document.getElementById("fruitList").innerHTML = listHTML;
+      }
     </script>
-</head>
-<body>
-    <h1>Fruit List</h1>
-    <div class="top">
-        <input type="text" id="inp" placeholder="Enter the fruit name">
-        <button onclick="add()">ADD</button>
+  </head>
+  <body>
+    <div>
+      <h1>Fruit List</h1>
+      <input type="text" id="txt1" />
+      <button onclick="add()">Add</button>
+      <ul id="fruitList"></ul>
     </div>
-    <hr>
-    <div id="fruitlist"></div>
-</body>
+  </body>
 </html>
