@@ -1,39 +1,94 @@
+const users = [];
+let user={}
 const showLogin = () => {
-    let str=`
-    <div class='App-Container'>
-    <center>
+  let str = `
+    <div>
     <h1>Login Form</h1>
-    <p><input type="text" id="txtEmail" placeholder = 'Enter your Email'></p>
-    <p><input type="password" id="txtPass" placeholder = 'Enter your password'></p>
-    <p><button onclick = 'showHome()'>Log In</button></p>
+    <p><div id="dvMsg"></div></p>
+    <p><input type="text" id="txtEmail"></p>
+    <p><input type="password" id="txtPass"></p>
+    <p><button onclick='validateUser()'>Log In</button></p>
     <p><button onclick='showRegister()'>Create Account</button></p>
-    </center>
     </div>
-    `
-    root.innerHTML = str
-}
+    `;
+  root.innerHTML = str;
+};
 
 const showRegister = () => {
-    let str=`
-    <div class='App-Container'>
-    <center>
+  let str = `
     <h1>Register Form</h1>
-    <p><input type="text" id="txtName" placeholder = 'Enter your name'></p>
-    <p><input type="text" id="txtEmail" placeholder = 'Enter your Email'></p>
-    <p><input type="password" id="txtPass" placeholder = 'Enter your password'></p>
-    <p><button>Register</button></p>
-    <p><button onclick = 'showLogin()'>Login to Existing Account</button></p>
-    </center>
-    </div>
-    `
-    root.innerHTML = str
-}
+    <p><input type="text" id="txtName"></p>
+     <p><input type="text" id="txtEmail"></p>
+    <p><input type="password" id="txtPass"></p>
+    <button onclick='addUser()'>Register</button>
+    <hr>
+    <button onClick='showLogin()'>Alread a Member? Login here...</button>
+    `;
+  root.innerHTML = str;
+};
 
 const showHome = () => {
-    let str = `
-    <div class='App-Container'>
-    <center><h1>WELCOME</h1></center>
-    </div>
-    `
-    root.innerHTML = str
+  let str = `
+    <h1>Welcome ${user.name}</h1>
+    <hr>
+    <p><select id='bank_opt'>
+     <option value=0>--select--</option>
+      <option value=1>Deposit</option>
+      <option value=2>Withdraw</option>
+      </select></p>
+      <p>
+      <input type='number' id='txtAmount'>
+      </p>
+      <div id='warning'></div>
+      <p><button onclick='updateBal()'>Submit</button>
+      
+
+    <button onclick='showLogin()'>Logout</button>
+    <hr>
+    <p>Current balance:${user.balance}
+    `;
+  root.innerHTML = str;
+};
+
+const addUser = () => {
+  const obj = {
+    name: document.getElementById("txtName").value,
+    email: document.getElementById("txtEmail").value,
+    pass: document.getElementById("txtPass").value,
+    balance:0
+  };
+  users.push(obj);
+  showLogin();
+};
+
+const validateUser = () => {
+  let email = document.getElementById("txtEmail").value;
+  let pass = document.getElementById("txtPass").value;
+   user = users.find(
+    (e) => e.email === email && e.pass === pass
+  )
+  if (user) {
+    showHome();
+  } else {
+    dvMsg.innerHTML = "Access Denied";
+  }
+};
+
+const updateBal = () => {
+    let option = Number(document.getElementById('bank_opt').value);
+    let amount = Number(document.getElementById('txtAmount').value);
+
+    if (option === 1) {
+        user.balance = user.balance + amount;
+        showHome();
+    } else if (option === 2) {
+        if (user.balance < amount) {
+            showHome();
+            document.getElementById('warning').innerHTML = `<p>Insufficient Balance</p>`;
+        } else {
+            user.balance = user.balance - amount;
+            showHome();
+        }
+    }
+    
 }
