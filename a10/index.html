@@ -7,7 +7,7 @@
   </head>
   <body>
     <div id="dvUsers">
-        <input type="text" placeholder="Enter name" id="name">
+        <input type="text" placeholder="Enter email" id="email">
         <button onclick="search()">Submit</button>
         <div id="details"></div>
     </div>
@@ -22,7 +22,7 @@
           });
         });
         const search = () => {
-            let i = document.getElementById('name').value;
+            let i = document.getElementById('email').value;
             //let fet = str.filter((user) => user.email === i);
             //let dis = fet.map((user) => `<div>${user.name}</div>`).join("");
             //document.getElementById('details').innerHTML = dis;
