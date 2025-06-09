@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="dvUsers">
+        <input type="text" placeholder="Enter name" id="name">
+        <button onclick="search()">Submit</button>
+        <div id="details"></div>
+    </div>
+    <script>
+      const url = "https://jsonplaceholder.typicode.com/users";
+      let str = [];
+      fetch(url)
+        .then((res) => res.json())
+        .then((users) => {
+          users.map((user) => {
+            str.push(user);
+          });
+        });
+        const search = () => {
+            let i = document.getElementById('name').value;
+            //let fet = str.filter((user) => user.email === i);
+            //let dis = fet.map((user) => `<div>${user.name}</div>`).join("");
+            //document.getElementById('details').innerHTML = dis;
+            let fet = str.find((user) => user.email === i);
+            document.getElementById('details').innerHTML = `<div>${fet.name}</div>`
+        }
+    </script>
+  </body>
+</html>

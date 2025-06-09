@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #items {
+            display: flex;             
+            flex-direction: column;    
+            align-items: center;       
+            margin: auto;               
+            padding: 16px;
+            background-color: aliceblue;
+            border: 2px;
+            border-color: black;
+            border-style: dotted;
+        }
+        #root {
+            display: flex;
+            flex: 1;
+        }
+        .content {
+            display: block;
+        }
+    </style>
+    <script>
+        let products = [
+            {
+                name:'MacBook Air',
+                desc:'This is a laptop',
+                price:'₹1,60,000',
+                link:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlygWcz51gyDexlstejSgZZ2LSxqF4rBz3wQ&s'
+            },
+            {
+                name:'Ipad Air',
+                desc:'This is an Ipad',
+                price:'₹59,000',
+                link:''
+            },
+            {
+                name:'Iphone',
+                desc:'This is a mobile phone',
+                price:'₹80,000',
+                link:''
+            }
+        ]
+        let str = products.map((product) => `<div id='items'>
+            <img src='${product.link}'>
+            <h2 class='content'>${product.name}</h2>
+            <h5 class='content'>${product.desc}</h5>
+            <h3 class='content'>${product.price}</h3>
+            <button class='content'>Add to cart</button>
+            </div>
+            `).join("");
+
+        const display = () => {
+            document.getElementById('root').innerHTML = str;
+        }
+
+    </script>
+</head>
+<body onload="display()">
+    <div id="root"></div>
+</body>
+</html>

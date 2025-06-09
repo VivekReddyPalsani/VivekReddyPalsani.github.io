@@ -31,6 +31,7 @@ const showHome = () => {
   let str = `
     <h1>Welcome ${user.name}</h1>
     <hr>
+    <button onclick='fundTrans()'>Fund Transfer</button>
     <p><select id='bank_opt'>
      <option value=0>--select--</option>
       <option value=1>Deposit</option>
@@ -91,4 +92,12 @@ const updateBal = () => {
         }
     }
     
+}
+
+const fundTrans = () => {
+    let userList = users.map((rec) => `<li>${rec.name}</li>`)
+    let str = `
+        <p>Select Receiver</p>
+
+    `
 }

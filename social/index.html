@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .post-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .post {
+            flex: 0 0 calc(33.333% - 20px);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin: 5px;
+            border-style: ridge;
+            background-color: lightgrey;
+            box-sizing: border-box;
+        }
+        #name {
+            display: block;
+            justify-content: center;
+        }
+        .txt {
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="dvUsers">
+        <input type="text" placeholder="Enter Email" id="email">
+        <button onclick="search()">Submit</button>
+        <div id="details"></div>
+    </div>
+    <script>
+        const url_user = "https://jsonplaceholder.typicode.com/users";
+        const url_post = "https://jsonplaceholder.typicode.com/posts";
+        let users = [];
+        fetch(url_user)
+            .then((res) => res.json())
+            .then((objs) => {
+            objs.map((user) => {
+                users.push(user);
+            });
+        });
+
+        let posts = [];
+        fetch(url_post)
+            .then((res) => res.json())
+            .then((objs) => {
+            objs.map((user) => {
+                posts.push(user);
+            });
+        });
+        
+        const search = () => {
+            let i = document.getElementById('email').value;
+            let target = users.find((user) => user.email === i);
+            let id = target.id;
+            let tar_posts = posts.filter((post) => post.userId === id);
+            let display = tar_posts.map((post) => `
+                <div class='post'>
+                    <h4 class='txt'>${post.title}</h2>
+                    <p class='txt'>${post.body}</p>
+                </div>
+            `).join("");
+            document.getElementById('details').innerHTML = `<h1 id='name'>${target.name}</h1><div class='post-container'>${display}</div>`;
+        }
+    </script>
+  </body>
+</html>
